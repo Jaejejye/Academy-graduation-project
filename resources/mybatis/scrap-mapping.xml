@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.scrapMapper">
+	<insert id="scrap_in" parameterType="scrapDTO">
+		insert into scrapbook values (#{scrap_num.nextval}, #{house_num}, #{mem_num})
+	</insert>
+	
+	<delete id="scrap_out" parameterType="int">
+		delete scrapbook where scrap_num=#{scrap_num}
+	</delete>
+	
+	<select id="scrap_total" resultType="int">
+		select count(*) as cnt from scrapbook
+	</select>
+	
+	<select id="scrap_list" parameterType="java.util.Map" resultType="scrapDTO">
+		<![CDATA[select * from (select rownum rn, tt.* from 
+		(select * from scrapbook order by scrap_num desc) tt) 
+		where mem_num=#{mem_num} and rn>=#{startNum} and rn<=#{endNum}]]>
+	</select>
+</mapper>

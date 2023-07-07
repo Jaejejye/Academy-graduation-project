@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 클래스에 별명 설정 -->
+	<typeAliases>
+		<typeAlias type="member.bean.MemberDTO" alias="memberDTO"/>
+		<typeAlias type="scrap.bean.ScrapDTO" alias="scrapDTO"/>
+		<typeAlias type="product.bean.ProductDTO" alias="productDTO"/>
+	</typeAliases> 
+	
+	<!-- SQL Mapper 설정 -->
+	<mappers>
+		<mapper resource="mybatis/member-mapping.xml" />
+		<mapper resource="mybatis/scrap-mapping.xml" />
+		<mapper resource="mybatis/product-mapping.xml" />
+	</mappers>
+</configuration>

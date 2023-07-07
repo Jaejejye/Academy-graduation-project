@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.memberMapper">
+	<select id="login" parameterType="java.util.Map" resultType="String">
+		select * from member where mem_id=#{mem_id} and passwd=#{passwd}
+	</select>
+	
+	<select id="login1" parameterType="java.util.Map" resultType="memberDTO">
+		select * from member where mem_id=#{mem_id} and passwd=#{passwd}
+	</select>
+	
+	<select id="isExistId" parameterType="String" resultType="memberDTO">
+		select * from member where mem_id=#{mem_id}
+	</select>
+	
+	<insert id="write" parameterType="memberDTO">
+		insert into member (mem_num, mem_id, mem_name, passwd, nickname, mem_auth, 
+							email1, email2, phone1, phone2, phone3, zipcode, add1, add2, 
+							profile_image, reg_date) 
+		values (#{seq_mem.nextval}, #{mem_id}, #{mem_name}, #{passwd}, #{nickname}, #{mem_auth}, 
+				#{email1}, #{email2}, #{phone1}, #{phone2}, #{phone3}, #{zipcode}, #{add1}, #{add2}, 
+				#{profile_image}, sysdate)
+	</insert>
+	
+	<update id="modify" parameterType="memberDTO">
+		update member set passwd=#{passwd}, nickname=#{nickname}, email1=#{email1}, email2=#{email2}, 
+			phone1=#{phone1}, phone2=#{phone2}, phone3=#{phone3}, zipcode=#{zipcode}, add1=#{add1}, add2=#{add2},
+			profile_image=#{profile_image} where mem_id=#{mem_id}
+	</update>
+	
+	<update id="buisUpdate" parameterType="memberDTO">
+		update member set email1=#{email1}, email2=#{email2}, phone1=#{phone1}, phone2=#{phone2}, phone3=#{phone3}, 
+			zipcode=#{zipcode}, add1=#{add1}, add2=#{add2}, mem_auth=#{mem_auth}, buis_count=seq_buis.nextval, 
+			buis_num=#{buis_num}, ceo_name=#{ceo_name}, buis_name=#{buis_name}, buis_open=#{buis_open}, 
+			buis_item=#{buis_item} where mem_id=#{mem_id}
+	</update>
+	
+	<select id="getMember" parameterType="String" resultType="memberDTO">
+		select * from member where mem_id=#{mem_id}
+	</select>
+	
+	<delete id="delete" parameterType="String">
+		delete member where mem_id=#{mem_id}
+	</delete>
+	
+</mapper>
