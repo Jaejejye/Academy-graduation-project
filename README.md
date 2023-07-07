@@ -1,2 +1,2 @@
 # Academy-graduation-project
-- 학원 졸업 프로젝트
+- 22년 8월 학원 졸업 프로젝트
